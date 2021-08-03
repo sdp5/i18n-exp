@@ -1,8 +1,8 @@
-# Scope i18n
+# Desktop i18n experiences
 
 This repo contains scripts to analyze packages and their SPECs for i18n aspects. <br/>It also has web and cmd-line interfaces.
 
-Run cli `./scope <sub-command>`
+Run cli `./i18nexp <sub-command>`
 
 Run web `make web`
 

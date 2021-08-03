@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block style %}
+<style>
+a:hover {
+    color:lightslategrey;
+}
+a {
+    color: darkslategrey;
+}
+hr {
+  border: 1px dotted;
+}
+.content {
+    margin-top: 2%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+.sub-content {
+    margin-left: 2%;
+}
+</style>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+{% endblock %}
+
+{% block navtabs %}
+<li><a href="{% url 'index' %}"><h4>Status</h4></a></li>
+<li class="active"><a href="{% url 'sub-pkg' %}"><h4>RPM Translation Sub-packaging</h4></a></li>
+<li><a href="{% url 'sos' %}"><h4>SOS Summary</h4></a></li>
+<li><a href="{% url 'gettext' %}"><h4>Gettext Improvements</h4></a></li>
+{% endblock %}
+
+{% block subcontent %}
+<span class="pull-right"><i style="color: lightslategrey;">Last Updated</i> March 5, 2021</span>
+
+<h2>Problem Statement</h2>
+    <div class="sub-content">
+        <h3>Size</h3>
+            <p>Currently most of the RPM packaged applications ship the translations with them.
+    tly         Translations take up more space (even than fonts) in fedora workstation.</p>
+            <p>Hence there could be a need to limit this considering fedora minimization initiative.</p>
+        <h3>Expected Benefits</h3>
+            <ul>
+                <li>If we only install translation langpacks for the system/user locale that will reduce the footprint a lot.
+                    Moreover, this will help with the minimization efforts.</li>
+                <li>This could also be used if we will create the locale extensions for fedora flatpaks.</li>
+            </ul>
+        <h3>References</h3>
+            <a href="https://teams.fedoraproject.org/project/silverblue/us/116" target="_blank">Silverblue Ticket</a> |
+            <a href="https://projects.engineering.redhat.com/browse/GNIN-649" target="_blank">Team JIRA</a></li> |
+            <a href="https://github.com/rpm-software-management/rpm/issues/310" target="_blank">RPM Upstream</a> |
+            <a href="https://fedoraproject.org/wiki/Packaging:Langpacks" target="_blank">Fedora Wiki</a>
+    </div>
+<h2>Investigation</h2>
+    <div class="sub-content">
+        <ul>
+            <li>packages may get affected <code>(using find_lang)</code> - see <a href="{% url 'reports-trans-pkg' %}">report</a></li>
+            <li>number of .mo files and their size - see reports <code>(for fedora base img)</code>:
+                <a href="{% url 'reports-size-count-sb' %}">silverblue</a> |
+                <a href="{% url 'reports-size-count-ws' %}">workstation</a> |
+                <a href="{% url 'reports-size-count-srv' %}">server</a>
+            </li>
+            <li>comparison of translation packaging(s) - see <a href="{% url 'comp-trans-pkg' %}">table</a></li>
+        </ul>
+    </div>
+<h2>Probable Solution</h2>
+    <div class="sub-content">
+        <h3>What to solve</h3>
+            <ol>
+                <li>how to generate names for subpackages, on which types/names of files, which Provides/Supplements, how they would be tied to the original package where translations are coming from.<br/>
+                    In other words, what MAINPKG would be (how to automatically determine it) and what XX to use?</li>
+                <li>the support of automated subpackage generation from RPM, that is something what needs to be implemented in RPM.</li>
+            </ol>
+        <h3>Implementation <small>step wise</small></h3>
+        <ol>
+            <li>
+                <div>
+                    <h4>Single translation subpackage per package</h4>
+                    <i>For example</i>: for a package, say <code><a href="https://src.fedoraproject.org/rpms/hello" target="_blank">hello</a></code>,
+                         a subpackage <code>hello-translations</code> will automatically be created. <small>(<i>Packager can opt-out this feature</i>)</small>
+                    <p>
+                        Quick approach could be a <a href="https://src.fedoraproject.org/rpms/redhat-rpm-config/pull-request/94" target="_blank">patch</a> for
+                        <a href="https://src.fedoraproject.org/rpms/redhat-rpm-config" target="_blank">redhat-rpm-config</a>.
+                        As this creates <code>%{name}.subpkgtrans</code> file instead of <code>%{name}.lang</code>, existing <code>find-lang</code>
+                        scenarios could be handled. <br/>However, there is a limitation around handling <i>no translations found</i> scenario.<br/>
+                    </p>
+                    <p>
+                        Another approach could be to implement this in <a href="https://github.com/rpm-software-management/rpm" target="_blank">rpm</a>
+                        itself. Hence <a href="https://github.com/rpm-software-management/rpm/issues/1276" target="_blank">discussing</a> this upstream.
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <h4>Package translation subpackage(s) group by <code>language_id</code></h4>
+                    <i>For example</i>: there will one subpackage for <code>(zh_CN and zh_TW) or (pt_PT and PT_BR).</code>
+                    <p><a href="https://github.com/rpm-software-management/rpm/pull/1485#issuecomment-789710406" target="_blank">
+                        This</a> is being implemented by <b>@ffesti</b>, see code
+                        <a href="https://github.com/rpm-software-management/rpm/pull/1485/files" target="_blank">changes.</a>
+                    </p>
+                </div>
+            </li>
+        </ol>
+        <h3>Use-Cases</h3>
+        <h3>Working - UX <small>Packager, End-User</small></h3>
+        <h3>Shipment</h3>
+    </div>
+{% endblock %}

@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>scope i18n | analysis</title>
+    <title>desktop i18n</title>
     <style>
         li{
             margin: 5px 0;
@@ -24,7 +24,17 @@
 </head>
 
 <body>
-    {% block body %}{% endblock %}
+    {% block body %}
+    <div class="content">
+        <h1><small>improving,</small> desktop i18n experiences</h1><hr/>
+        <ul class="nav nav-tabs">
+          {% block navtabs %}{% endblock %}
+        </ul>
+        <div class="sub-content">
+            {% block subcontent %}{% endblock %}
+        </div>
+    </div>
+    {% endblock %}
     {% block script %} {% endblock %}
 </body>
 

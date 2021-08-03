@@ -35,6 +35,7 @@ report_urls = [
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name="index.html"), name="index"),
+    path('sub-pkg', TemplateView.as_view(template_name="rpm-sub-pkg.html"), name="sub-pkg"),
     path('gettext', TemplateView.as_view(template_name="gettext.html"), name="gettext"),
     path('sos', SOSSummaryView.as_view(), name="sos"),
     path('reports/', include(report_urls)),

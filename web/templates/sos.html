@@ -42,49 +42,43 @@ table, th, td {
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 {% endblock %}
 
+{% block navtabs %}
+<li><a href="{% url 'index' %}"><h4>Status</h4></a></li>
+<li><a href="{% url 'sub-pkg' %}"><h4>RPM Translation Sub-packaging</h4></a></li>
+<li class="active"><a href="{% url 'sos' %}"><h4>SOS Summary</h4></a></li>
+<li><a href="{% url 'gettext' %}"><h4>Gettext Improvements</h4></a></li>
+{% endblock %}
 
-{% block body %}
-<div class="content">
-    <h1><small>analysis around,</small> a few i18n Projects</h1><hr/>
-
-    <ul class="nav nav-tabs">
-      <li><a href="{% url 'index' %}"><h4>RPM Translation Sub-packaging</h4></a></li>
-      <li><a href="{% url 'gettext' %}"><h4>Gettext Improvements</h4></a></li>
-      <li class="active"><a href="{% url 'sos' %}"><h4>SOS Summary</h4></a></li>
-    </ul>
-
-    <div class="sub-content">
+{% block subcontent %}
+<div class="sub-content">
+    {% for sos_type, data in summary.items %}
+        <h2>{{ sos_type }}</h2>
         <div class="sub-content">
-            {% for sos_type, data in summary.items %}
-                <h2>{{ sos_type }}</h2>
-                <div class="sub-content">
-                  <div class="row">
-                    {% for k, v in data.items %}
-                      <div class="col-sm-4">
-                        <h3>{{ k }}</h3>
-                        <div class="sub-content-2">
-                          <table>
-                            <thead>
-                                <tr style="color: darkgoldenrod;">
-                                    <td><h4>Lang, Locale</h4></td>
-                                    <td><h4>Count</h4></td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for i, j in v.items %}
-                                    <tr>
-                                        <td>{{ i }}</td><td>{{ j }}</td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    {% endfor %}
-                  </div>
+          <div class="row">
+            {% for k, v in data.items %}
+              <div class="col-sm-4">
+                <h3>{{ k }}</h3>
+                <div class="sub-content-2">
+                  <table>
+                    <thead>
+                        <tr style="color: darkgoldenrod;">
+                            <td><h4>Lang, Locale</h4></td>
+                            <td><h4>Count</h4></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i, j in v.items %}
+                            <tr>
+                                <td>{{ i }}</td><td>{{ j }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                  </table>
                 </div>
+              </div>
             {% endfor %}
+          </div>
         </div>
-    </div>
+    {% endfor %}
 </div>
 {% endblock %}
