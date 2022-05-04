@@ -238,8 +238,10 @@ class GettextReportsView(TemplateView):
     DELIMITER = "§"
 
     def _format_data(self):
-        gettext_data = {}
-        devel_data = {}
+        gettext_deps = {}
+        gettext_build_deps = {}
+        gettext_devel_deps = {}
+        gettext_devel_build_deps = {}
         with open(self.report_gettext_file) as g_file:
             lines = g_file.readlines()
 
@@ -247,18 +249,25 @@ class GettextReportsView(TemplateView):
             if self.DELIMITER in line:
                 line_parts = line.split(self.DELIMITER)
                 # hardcoded, as per reports formatted
-                if "gettext-devel" in line_parts[1]:
-                    devel_data[line_parts[0]] = line_parts[1].split("|")
-                else:
-                    gettext_data[line_parts[0]] = line_parts[1].split("|")
+                if line_parts[1].startswith("Requires"):
+                    if "gettext" in line_parts[1]:
+                        gettext_deps[line_parts[0]] = line_parts[1].split("|")
+                    if "gettext-devel" in line_parts[1]:
+                        gettext_devel_deps[line_parts[0]] = line_parts[1].split("|")
+                elif line_parts[1].startswith("BuildRequires"):
+                    if "gettext" in line_parts[1]:
+                        gettext_build_deps[line_parts[0]] = line_parts[1].split("|")
+                    if "gettext-devel" in line_parts[1]:
+                        gettext_devel_build_deps[line_parts[0]] = line_parts[1].split("|")
 
-        return gettext_data, devel_data
+        return gettext_deps, gettext_build_deps, gettext_devel_deps, gettext_devel_build_deps
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["summary"] = "Gettext dependencies"
 
-        context["gettext_data"], context["devel_data"] = self._format_data()
+        context["gettext_deps"], context["gettext_build_deps"], context["gettext_devel_deps"], \
+            context["gettext_devel_build_deps"] = self._format_data()
         return context
 
 

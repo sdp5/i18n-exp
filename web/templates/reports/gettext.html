@@ -51,13 +51,13 @@ table, th, td {
     <div class="content">
         <h2>{{ summary }} <small class="pull-right">
             <a href="{% url 'gettext' %}"><i class="fa fa-home"></i></a></small>
-        </h2>
+        </h2><hr/>
         <div class="container">
             <div class="row">
                 <div class="column summary-content">
-                    <h3 style="padding-left:1%">{{ gettext_data|length }} dependent packages:</h3>
+                    <h3 style="padding-left:1%">{{ gettext_deps|length }} dependent packages:</h3>
                     <div class="sub-content"><table>
-                    {% for pkg, info in gettext_data.items|dictsort:0 %}
+                    {% for pkg, info in gettext_deps.items|dictsort:0 %}
                         <tr>
                             <td width="10%">{{ forloop.counter }}</td>
                             <td width="20%">{{ pkg }}</td>
@@ -69,9 +69,37 @@ table, th, td {
                     </table></div>
                 </div>
                 <div class="column summary-content">
-                <h3 style="padding-left:1%">{{ devel_data|length }} devel dependent packages:</h3>
+                <h3 style="padding-left:1%">{{ gettext_build_deps|length }} build dependent packages:</h3>
                     <div class="sub-content"><table>
-                    {% for pkg, info in devel_data.items|dictsort:0 %}
+                    {% for pkg, info in gettext_build_deps.items|dictsort:0 %}
+                        <tr>
+                            <td width="10%">{{ forloop.counter }}</td>
+                            <td width="20%">{{ pkg }}</td>
+                            <td width="70%">{% for i in info %}{{ i }}<br/>{% endfor %}</td>
+                        </tr>
+                    {% empty %}
+                        <tr><td>No records found.</td></tr>
+                    {% endfor %}
+                    </table></div>
+                </div>
+                <div class="column summary-content">
+                    <h3 style="padding-left:1%">{{ gettext_devel_deps|length }} devel dependent packages:</h3>
+                    <div class="sub-content"><table>
+                    {% for pkg, info in gettext_devel_deps.items|dictsort:0 %}
+                        <tr>
+                            <td width="10%">{{ forloop.counter }}</td>
+                            <td width="20%">{{ pkg }}</td>
+                            <td width="70%">{% for i in info %}{{ i }}<br/>{% endfor %}</td>
+                        </tr>
+                    {% empty %}
+                        <tr><td>No records found.</td></tr>
+                    {% endfor %}
+                    </table></div>
+                </div>
+                <div class="column summary-content">
+                <h3 style="padding-left:1%">{{ gettext_devel_build_deps|length }} devel build dependent packages:</h3>
+                    <div class="sub-content"><table>
+                    {% for pkg, info in gettext_devel_build_deps.items|dictsort:0 %}
                         <tr>
                             <td width="10%">{{ forloop.counter }}</td>
                             <td width="20%">{{ pkg }}</td>
