@@ -250,15 +250,15 @@ class GettextReportsView(TemplateView):
                 line_parts = line.split(self.DELIMITER)
                 # hardcoded, as per reports formatted
                 if line_parts[1].startswith("Requires"):
-                    if "gettext" in line_parts[1]:
-                        gettext_deps[line_parts[0]] = line_parts[1].split("|")
                     if "gettext-devel" in line_parts[1]:
                         gettext_devel_deps[line_parts[0]] = line_parts[1].split("|")
+                    elif "gettext" in line_parts[1]:
+                        gettext_deps[line_parts[0]] = line_parts[1].split("|")
                 elif line_parts[1].startswith("BuildRequires"):
-                    if "gettext" in line_parts[1]:
-                        gettext_build_deps[line_parts[0]] = line_parts[1].split("|")
                     if "gettext-devel" in line_parts[1]:
                         gettext_devel_build_deps[line_parts[0]] = line_parts[1].split("|")
+                    elif "gettext" in line_parts[1]:
+                        gettext_build_deps[line_parts[0]] = line_parts[1].split("|")
 
         return gettext_deps, gettext_build_deps, gettext_devel_deps, gettext_devel_build_deps
 
