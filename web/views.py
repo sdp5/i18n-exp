@@ -236,16 +236,32 @@ class GettextReportsView(TemplateView):
     )
 
     DELIMITER = "§"
+    ANOTHER_DELIMITER = "|"
+
+    def _pre_process_data(self):
+        processed_data = []
+        with open(self.report_gettext_file) as g_file:
+            lines = g_file.readlines()
+        for line in lines:
+            if self.DELIMITER in line:
+                line_parts = line.split(self.DELIMITER)
+                if self.ANOTHER_DELIMITER in line_parts[1]:
+                    line_sub_parts = line_parts[1].split(self.ANOTHER_DELIMITER)
+                    for sub_part in line_sub_parts:
+                        processed_data.append(
+                            "{}{}{}".format(line_parts[0], self.DELIMITER, sub_part.strip())
+                        )
+                else:
+                    processed_data.append(line)
+        return processed_data
 
     def _format_data(self):
         gettext_deps = {}
         gettext_build_deps = {}
         gettext_devel_deps = {}
         gettext_devel_build_deps = {}
-        with open(self.report_gettext_file) as g_file:
-            lines = g_file.readlines()
 
-        for line in lines:
+        for line in self._pre_process_data():
             if self.DELIMITER in line:
                 line_parts = line.split(self.DELIMITER)
                 # hardcoded, as per reports formatted
