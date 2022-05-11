@@ -234,6 +234,9 @@ class GettextReportsView(TemplateView):
     report_gettext_file = os.path.join(
         settings.BASE_DIR, 'reports', 'parse-find-gettext'
     )
+    report_fedora_maintainers_file = os.path.join(
+        settings.BASE_DIR, 'reports', 'fedora-maintainers'
+    )
 
     DELIMITER = "§"
     ANOTHER_DELIMITER = "|"
@@ -278,12 +281,21 @@ class GettextReportsView(TemplateView):
 
         return gettext_deps, gettext_build_deps, gettext_devel_deps, gettext_devel_build_deps
 
+    def _get_fedora_package_maintainers(self):
+        package_maintainers = {}
+        with open(self.report_fedora_maintainers_file) as g_file:
+            lines = g_file.readlines()
+        for line in lines:
+            pkg_name, maintainer_email = line.strip().split()
+            package_maintainers.update({pkg_name: maintainer_email})
+        return package_maintainers
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["summary"] = "Gettext dependencies"
-
         context["gettext_deps"], context["gettext_build_deps"], context["gettext_devel_deps"], \
             context["gettext_devel_build_deps"] = self._format_data()
+        context["maintainers"] = self._get_fedora_package_maintainers()
         return context
 
 

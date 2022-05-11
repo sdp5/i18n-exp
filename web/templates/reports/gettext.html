@@ -1,4 +1,5 @@
 {% extends "../base.html" %}
+{% load custom_filters %}
 
 {% block style %}
 <style>
@@ -61,7 +62,8 @@ table, th, td {
                         <tr>
                             <td width="10%">{{ forloop.counter }}</td>
                             <td width="20%">{{ pkg }}</td>
-                            <td width="70%">{% for i in info %}{{ i }}<br/>{% endfor %}</td>
+                            <td width="30%">{{ maintainers|get_item:pkg }}</td>
+                            <td width="40%">{% for i in info %}{{ i }}<br/>{% endfor %}</td>
                         </tr>
                     {% empty %}
                         <tr><td>No records found.</td></tr>
