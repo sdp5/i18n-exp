@@ -39,8 +39,13 @@ hr {
         <p> - Upstream <a href="https://savannah.gnu.org/bugs/?group=gettext&func=browse&set=open" target="_blank">bugs</a>,
             fedora <a href="https://bugzilla.redhat.com/buglist.cgi?bug_status=NEW&bug_status=ASSIGNED&component=gettext&list_id=11384574&product=Fedora" target="_blank">bugs</a></p>
         <p> - Separate out <code>gettext-tools*.rpm</code> from <code>gettext*.rpm</code>
-            (<a href="https://git.savannah.gnu.org/gitweb/?p=gettext.git;a=blob;f=PACKAGING;h=f4bae4561ec70a9de2532502b5c2358bb976036c;hb=HEAD" target="_blank">inspiration</a>)
-            (<a href="{% url 'reports-gettext' %}">dependencies</a>)</p>
+            <ul>
+                <li><a href="https://git.savannah.gnu.org/gitweb/?p=gettext.git;a=blob;f=PACKAGING;h=f4bae4561ec70a9de2532502b5c2358bb976036c;hb=HEAD" target="_blank">inspiration</a>
+                     (<a href="https://fedoraproject.org/wiki/Changes/GettextRuntimeSubpackage" target="_blank">fedora change</a>)</li>
+                <li><a href="{% url 'reports-gettext' %}">dependencies</a></li>
+                <li><a href="{% url 'reports-gettext-comparison' %}">packaging comparison</a></li>
+            </ul>
+        </p>
         <p> - Per-language configuration for xgettext</p>
         <p> - Generalize ITS support for json, yaml, etc.</p>
     </div>

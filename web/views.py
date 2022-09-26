@@ -299,6 +299,16 @@ class GettextReportsView(TemplateView):
         return context
 
 
+class GettextComparisonReportsView(TemplateView):
+
+    template_name = "reports/gettext-comparison.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["summary"] = "Gettext comparison"
+        return context
+
+
 class SOSSummaryView(TemplateView):
 
     template_name = "sos.html"
