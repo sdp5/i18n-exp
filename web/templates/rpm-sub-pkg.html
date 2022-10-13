@@ -29,11 +29,14 @@ hr {
 <li><a href="{% url 'index' %}"><h4>Status</h4></a></li>
 <li class="active"><a href="{% url 'sub-pkg' %}"><h4>RPM Translation Sub-packaging</h4></a></li>
 <li><a href="{% url 'sos' %}"><h4>SOS Summary</h4></a></li>
-<li><a href="{% url 'gettext' %}"><h4>Gettext Improvements</h4></a></li>
+<li><a href="{% url 'anaconda' %}"><h4>Anaconda</h4></a></li>
+<li><a href="{% url 'gettext' %}"><h4>Gettext</h4></a></li>
+<li><a href="{% url 'gnome-apps' %}"><h4>GNOME Apps</h4></a></li>
+<li><a href="https://transtats.org" target="_blank"><h4>Localization Workflow</h4></a></li>
 {% endblock %}
 
 {% block subcontent %}
-<span class="pull-right"><i style="color: lightslategrey;">Last Updated</i> March 5, 2021</span>
+<span class="pull-right"><i style="color: lightslategrey;">Last Updated</i> Oct 13, 2022</span>
 
 <h2>Problem Statement</h2>
     <div class="sub-content">
@@ -96,15 +99,14 @@ hr {
                 <div>
                     <h4>Package translation subpackage(s) group by <code>language_id</code></h4>
                     <i>For example</i>: there will one subpackage for <code>(zh_CN and zh_TW) or (pt_PT and PT_BR).</code>
-                    <p><a href="https://github.com/rpm-software-management/rpm/pull/1485#issuecomment-789710406" target="_blank">
-                        This</a> is being implemented by <b>@ffesti</b>, see code
-                        <a href="https://github.com/rpm-software-management/rpm/pull/1485/files" target="_blank">changes.</a>
-                    </p>
                 </div>
             </li>
         </ol>
-        <h3>Use-Cases</h3>
-        <h3>Working - UX <small>Packager, End-User</small></h3>
-        <h3>Shipment</h3>
+        <hr/><p>
+            <a href="https://github.com/rpm-software-management/rpm/pull/1485#issuecomment-789710406" target="_blank">
+            This</a> is being discussed <a href="https://github.com/rpm-software-management/rpm/discussions/2032" target="_blank">here</a>
+            as <b>Dynamic Specs File Generation</b> and implemented by <b>@ffesti</b>, see code
+            <a href="https://github.com/rpm-software-management/rpm/pull/1485/files" target="_blank">changes.</a>
+        </p><hr/>
     </div>
 {% endblock %}

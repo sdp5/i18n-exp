@@ -37,7 +37,9 @@ report_urls = [
 urlpatterns = [
     path('', TemplateView.as_view(template_name="index.html"), name="index"),
     path('sub-pkg', TemplateView.as_view(template_name="rpm-sub-pkg.html"), name="sub-pkg"),
+    path('anaconda', TemplateView.as_view(template_name="anaconda.html"), name="anaconda"),
     path('gettext', TemplateView.as_view(template_name="gettext.html"), name="gettext"),
+    path('gnome-apps', TemplateView.as_view(template_name="gnome.html"), name="gnome-apps"),
     path('sos', SOSSummaryView.as_view(), name="sos"),
     path('reports/', include(report_urls)),
     path('admin/', admin.site.urls),
