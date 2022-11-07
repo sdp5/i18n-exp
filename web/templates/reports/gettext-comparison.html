@@ -34,7 +34,7 @@ h3 small {
 }
 .column {
   float: left;
-  width: 48%;
+  width: 33%;
 }
 /* Clear floats after the columns */
 .row:after {
@@ -59,6 +59,211 @@ h3 small {
         </h2><hr/>
         <div class="container">
             <div class="row">
+                <div class="column">
+                    <h2>Upstream</h2>
+                    <div class="summary-content">
+                        <h3 style="padding-left:1%">gettext-runtime</h3>
+                        <div class="sub-content">
+                            <pre>
+.
+├── bin
+│   ├── envsubst
+│   ├── gettext
+│   ├── gettext.sh
+│   └── ngettext
+├── include
+│   └── autosprintf.h
+├── lib
+│   ├── libasprintf.la
+│   ├── libasprintf.so -> libasprintf.so.0.0.0
+│   ├── libasprintf.so.0 -> libasprintf.so.0.0.0
+│   ├── libasprintf.so.0.0.0
+│   └── preloadable_libintl.so
+└── share
+    ├── doc
+    │   ├── gettext
+    │   │   ├── bindtextdomain.3.html
+    │   │   ├── bind_textdomain_codeset.3.html
+    │   │   ├── csharpdoc
+    │   │   │   ├── begin.html
+    │   │   │   ├── GNU_Gettext_GettextResourceManager.html
+    │   │   │   ├── GNU_Gettext_GettextResourceSet.html
+    │   │   │   ├── GNU_Gettext.html
+    │   │   │   ├── index.html
+    │   │   │   └── namespaces.html
+    │   │   ├── envsubst.1.html
+    │   │   ├── gettext.3.html
+    │   │   ├── javadoc2
+    │   │   │   ├── allclasses-frame.html
+    │   │   │   ├── deprecated-list.html
+    │   │   │   ├── gnu
+    │   │   │   │   └── gettext
+    │   │   │   │       ├── GettextResource.html
+    │   │   │   │       ├── package-frame.html
+    │   │   │   │       ├── package-summary.html
+    │   │   │   │       └── package-tree.html
+    │   │   │   ├── help-doc.html
+    │   │   │   ├── index-all.html
+    │   │   │   ├── index.html
+    │   │   │   ├── overview-tree.html
+    │   │   │   ├── package-list
+    │   │   │   ├── packages.html
+    │   │   │   ├── serialized-form.html
+    │   │   │   └── stylesheet.css
+    │   │   ├── ngettext.3.html
+    │   │   └── textdomain.3.html
+    │   └── libasprintf
+    │       └── autosprintf_all.html
+    ├── gettext
+    │   └── ABOUT-NLS
+    ├── info
+    │   ├── autosprintf.info
+    │   └── dir
+    ├── locale
+    │   ├── ast
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── be
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── bg
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── ca
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── cs
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── da
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── de
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── el
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── en@boldquot
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── en@quot
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── eo
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── es
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── et
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── fi
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── fr
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── ga
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── gl
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── hr
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── hu
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── id
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── it
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── ja
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── ko
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── nb
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── nl
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── nn
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── pl
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── pt
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── pt_BR
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── ro
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── ru
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── sk
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── sl
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── sr
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── sv
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── tr
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── uk
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── vi
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── zh_CN
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   ├── zh_HK
+    │   │   └── LC_MESSAGES
+    │   │       └── gettext-runtime.mo
+    │   └── zh_TW
+    │       └── LC_MESSAGES
+    │           └── gettext-runtime.mo
+    └── man
+        ├── man1
+        │   ├── envsubst.1
+        │   ├── gettext.1
+        │   └── ngettext.1
+        └── man3
+            ├── bindtextdomain.3
+            ├── bind_textdomain_codeset.3
+            ├── dcgettext.3
+            ├── dcngettext.3
+            ├── dgettext.3
+            ├── dngettext.3
+            ├── gettext.3
+            ├── ngettext.3
+            └── textdomain.3
+
+99 directories, 93 files
+                            </pre>
+                        </div>
+                    </div>
+                </div>
                 <div class="column">
                     <h2>Ubuntu</h2>
                     <div class="summary-content">
