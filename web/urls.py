@@ -10,7 +10,7 @@ Class-based views
     1. Add an import:  from other_app.views import Home
     2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
 Including another URLconf
-    1. Import the include() function: from django.urls import include, path
+    1. Import include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
@@ -36,10 +36,10 @@ report_urls = [
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name="index.html"), name="index"),
-    path('sub-pkg', TemplateView.as_view(template_name="rpm-sub-pkg.html"), name="sub-pkg"),
-    path('anaconda', TemplateView.as_view(template_name="anaconda.html"), name="anaconda"),
+    path('localization', TemplateView.as_view(template_name="localization.html"), name="localization"),
+    path('packaging', TemplateView.as_view(template_name="rpm-sub-pkg.html"), name="sub-pkg"),
+    path('ux', TemplateView.as_view(template_name="ux.html"), name="ux"),
     path('gettext', TemplateView.as_view(template_name="gettext.html"), name="gettext"),
-    path('gnome-apps', TemplateView.as_view(template_name="gnome.html"), name="gnome-apps"),
     path('sos', SOSSummaryView.as_view(), name="sos"),
     path('reports/', include(report_urls)),
     path('admin/', admin.site.urls),

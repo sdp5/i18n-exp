@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block style %}
+<style>
+a:hover {
+    color:lightslategrey;
+}
+a {
+    color: darkslategrey;
+}
+hr {
+  border: 1px dotted;
+}
+.content {
+    margin-top: 2%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+.sub-content {
+    margin-left: 2%;
+}
+</style>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+{% endblock %}
+
+{% block navtabs %}
+    {% include "navtabs.html" %}
+{% endblock %}
+
+{% block subcontent %}
+<div class="sub-content">
+    <h2>Anaconda</h2>
+    <div class="container">
+        <div style="margin: 3%; font-size: large;">
+            <p> - rhbz#1039185: Change keyboard ordering to US layout first, 'native' second. See code
+                <a href="https://github.com/rhinstaller/anaconda/commit/e05cc18294e67099bf87076e4f23fe5f031fecb5" target="_blank">changes</a>.
+            </p>
+            <p> - rhbz#1158370: List major common keyboard layouts first. See code
+                <a href="https://github.com/rhinstaller/anaconda/commit/d910e94bfea89b06e3201c174d2196c96c04df71" target="_blank">changes</a>.
+            </p>
+            <p> - rhbz#1888697: List important major languages. See code
+                <a href="https://github.com/rhinstaller/anaconda/commit/ff200b523755b0cec91008cd60f500f1cccecbbd" target="_blank">changes</a>.
+            </p>
+            <p> - rhbz#1912609: for non-ascii keyboard layouts, set 'native' to the virtual console explicitly. See code
+                <a href="https://github.com/rhinstaller/anaconda/commit/40a604afb9b2573c8f9bd93d5a35f34d29dd245e" target="_blank">changes</a>.
+            </p>
+            <p> - rhbz#1919486: vconsole font selection to cover more langs. See code
+                <a href="https://github.com/rhinstaller/anaconda/commit/59e2cca98ae447b113ea7d91336927e73965a1b7" target="_blank">changes</a>.
+            </p>
+            <p> - make US keyboard layout easier to find in Anaconda. See code
+                <a href="https://github.com/rhinstaller/anaconda/commit/c4cc26a521dce1d9e3d792c519e7cc6a4142fde2" target="_blank">changes</a>.
+            </p>
+            <p> - Improve Keyboard layout selection UI.
+            </p>
+        </div>
+    </div>
+    <h2>GNOME</h2>
+    <div class="container">
+        <h3>Software</h3>
+        <div style="margin: 3%; font-size: large;">
+            <p> - Auto-install language packs on fedora workstation and silverblue. See code
+                <a href="https://github.com/GNOME/gnome-software/commit/54034d267b0e61d4f82c80755dae490d5ecce668" target="_blank">changes</a>.</p>
+
+        </div><hr/>
+        <h3>Info Collect</h3>
+        <div style="margin: 3%; font-size: large;">
+            <p> - Added locale to the collected information.
+                See code <a href="https://gitlab.gnome.org/vstanek/gnome-info-collect/-/merge_requests/14" target="_blank">changes</a>.
+            </p>
+        </div><hr/>
+        <h3>Control Center</h3>
+        <div style="margin: 3%; font-size: large;">
+            <p> - <a href="https://issues.redhat.com/browse/I18N-860" target="_blank">I18N-860</a> Improve language search</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>document.getElementById("nav_li_ux").classList.add('active');</script>
+{% endblock %}

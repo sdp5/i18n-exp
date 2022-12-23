@@ -26,37 +26,31 @@ hr {
 {% endblock %}
 
 {% block navtabs %}
-<li><a href="{% url 'index' %}"><h4>Status</h4></a></li>
-<li class="active"><a href="{% url 'sub-pkg' %}"><h4>RPM Translation Sub-packaging</h4></a></li>
-<li><a href="{% url 'sos' %}"><h4>SOS Summary</h4></a></li>
-<li><a href="{% url 'anaconda' %}"><h4>Anaconda</h4></a></li>
-<li><a href="{% url 'gettext' %}"><h4>Gettext</h4></a></li>
-<li><a href="{% url 'gnome-apps' %}"><h4>GNOME Apps</h4></a></li>
-<li><a href="https://transtats.org" target="_blank"><h4>Localization Workflow</h4></a></li>
+    {% include "navtabs.html" %}
 {% endblock %}
 
 {% block subcontent %}
-<span class="pull-right"><i style="color: lightslategrey;">Last Updated</i> Oct 13, 2022</span>
-
-<h2>Problem Statement</h2>
+<span class="pull-right"><i style="color: lightslategrey;">Last Updated</i> Dec 23, 2022</span>
+<h2>RPM Translation Sub-packaging</h2>
+<h3>Problem Statement</h3>
     <div class="sub-content">
-        <h3>Size</h3>
+        <h4>Size</h4>
             <p>Currently most of the RPM packaged applications ship the translations with them.
     tly         Translations take up more space (even than fonts) in fedora workstation.</p>
             <p>Hence there could be a need to limit this considering fedora minimization initiative.</p>
-        <h3>Expected Benefits</h3>
+        <h4>Expected Benefits</h4>
             <ul>
                 <li>If we only install translation langpacks for the system/user locale that will reduce the footprint a lot.
                     Moreover, this will help with the minimization efforts.</li>
                 <li>This could also be used if we will create the locale extensions for fedora flatpaks.</li>
             </ul>
-        <h3>References</h3>
+        <h4>References</h4>
             <a href="https://teams.fedoraproject.org/project/silverblue/us/116" target="_blank">Silverblue Ticket</a> |
             <a href="https://projects.engineering.redhat.com/browse/GNIN-649" target="_blank">Team JIRA</a></li> |
             <a href="https://github.com/rpm-software-management/rpm/issues/310" target="_blank">RPM Upstream</a> |
             <a href="https://fedoraproject.org/wiki/Packaging:Langpacks" target="_blank">Fedora Wiki</a>
     </div>
-<h2>Investigation</h2>
+<h3>Investigation</h3>
     <div class="sub-content">
         <ul>
             <li>packages may get affected <code>(using find_lang)</code> - see <a href="{% url 'reports-trans-pkg' %}">report</a></li>
@@ -68,15 +62,15 @@ hr {
             <li>comparison of translation packaging(s) - see <a href="{% url 'comp-trans-pkg' %}">table</a></li>
         </ul>
     </div>
-<h2>Probable Solution</h2>
+<h3>Probable Solution</h3>
     <div class="sub-content">
-        <h3>What to solve</h3>
+        <h4>What to solve</h4>
             <ol>
                 <li>how to generate names for subpackages, on which types/names of files, which Provides/Supplements, how they would be tied to the original package where translations are coming from.<br/>
                     In other words, what MAINPKG would be (how to automatically determine it) and what XX to use?</li>
                 <li>the support of automated subpackage generation from RPM, that is something what needs to be implemented in RPM.</li>
             </ol>
-        <h3>Implementation <small>step wise</small></h3>
+        <h4>Implementation <small>step wise</small></h4>
         <ol>
             <li>
                 <div>
@@ -106,7 +100,13 @@ hr {
             <a href="https://github.com/rpm-software-management/rpm/pull/1485#issuecomment-789710406" target="_blank">
             This</a> is being discussed <a href="https://github.com/rpm-software-management/rpm/discussions/2032" target="_blank">here</a>
             as <b>Dynamic Specs File Generation</b> and implemented by <b>@ffesti</b>, see code
-            <a href="https://github.com/rpm-software-management/rpm/pull/1485/files" target="_blank">changes.</a>
+            <a href="https://github.com/rpm-software-management/rpm/pull/1485/files" target="_blank">changes.</a><br/>
+            Another <a href="https://github.com/rpm-software-management/rpm/pull/2300" target="_blank">PR</a>
+            for Adding <code>--generate-subpackages</code> to <code>find_lang.sh</code> is in progress.
         </p><hr/>
     </div>
+{% endblock %}
+
+{% block script %}
+<script>document.getElementById("nav_li_packaging").classList.add('active');</script>
 {% endblock %}
