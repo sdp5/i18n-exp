@@ -102,8 +102,9 @@ hr {
             as <b>Dynamic Specs File Generation</b> and implemented by <b>@ffesti</b>, see code
             <a href="https://github.com/rpm-software-management/rpm/pull/1485/files" target="_blank">changes.</a><br/>
             Another <a href="https://github.com/rpm-software-management/rpm/pull/2300" target="_blank">PR</a>
-            for Adding <code>--generate-subpackages</code> to <code>find_lang.sh</code> is in progress.
-        </p><hr/>
+            for Adding <code>--generate-subpackages</code> to <code>find_lang.sh</code> has been merged.
+            <pre>%find_lang %{name} --with-man --without-mo %{?langpacks: --generate-subpackages}</pre>
+        </p>
     </div>
 {% endblock %}
 
